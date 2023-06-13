@@ -1,0 +1,44 @@
+<!-- <label class="inline-block mb-2" [ngClass]="{ '!text-red-500': invalid }">{{
+  inputName
+}}</label> -->
+<input
+  [formControl]="control"
+  type="{{ type }}"
+  [class]="
+    'block w-full py-1.5 px-3 text-gray-500 border border-gray-300 transition duration-500 focus:outline-none rounded bg-gray-50 focus:border-indigo-400 ' +
+    classNames
+  "
+  placeholder="{{ inputName }}"
+  (keyup)="checkErrors()"
+  (blur)="checkErrors()"
+  [ngClass]="{ '!border-red-500 !text-red-500': invalid }"
+/>
+<div *ngIf="control.touched && control.dirty" class="mt-1 w-full">
+  <!-- <p class="text-red-400" *ngIf="control.errors?.pattern">
+    Passwords must be at least 8 characters long, have 1 uppercase letter, 1
+    lowercase letter, and 1 number.
+  </p> -->
+  <p *ngIf="control.errors?.['required']" class="text-red-400">
+    {{ inputName }} is required
+  </p>
+  <p *ngIf="control.errors?.['minlength']" class="text-red-400">
+    {{ inputName }} must be at least
+    {{ control.errors?.['minlength'].requiredLength }} characters.
+  </p>
+  <p *ngIf="control.errors?.['email']" class="text-red-400">
+    You must enter a valid email
+  </p>
+
+  <p *ngIf="control.errors?.['min']" class="text-red-400">
+    {{ inputName }} should be at least {{ control.errors?.['min'].min }}
+  </p>
+  <p *ngIf="control.errors?.['max']" class="text-red-400">
+    {{ inputName }} can't exceed {{ control.errors?.['max'].max }}
+  </p>
+  <p *ngIf="control.errors?.['noMatch']" class="text-red-400">
+    Passwords do not match
+  </p>
+  <p *ngIf="control.errors?.['emailTaken']" class="text-red-400">
+    This email is already in use
+  </p>
+</div>

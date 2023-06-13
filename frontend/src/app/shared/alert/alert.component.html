@@ -1,0 +1,10 @@
+<div
+  *ngIf="message !== ''"
+  [class]="
+    'p-4 mb-4 text-sm rounded-lg font-semibold text-center shadow-sm ' +
+    classNames
+  "
+  role="alert"
+>
+  {{ message }}
+</div>
