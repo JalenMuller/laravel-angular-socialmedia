@@ -23,20 +23,6 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent,
   },
-  {
-    path: 'home',
-    component: HomeComponent,
-    data: {
-      authOnly: true,
-    },
-  },
-  {
-    path: 'u/:profile',
-    component: ProfileComponent,
-    data: {
-      authOnly: true,
-    },
-  },
 ];
 
 @NgModule({

@@ -5,7 +5,7 @@ interface IPage {
 }
 
 const pages: IPage[] = [
-  { title: 'Home', url: '', icon: 'house' },
+  { title: 'Home', url: '/home', icon: 'house' },
   { title: 'Login', url: '/login', icon: 'people' },
   { title: 'Globe', url: '/globe', icon: 'play-circle' },
   { title: 'Search', url: '/search', icon: 'search' },

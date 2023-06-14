@@ -8,12 +8,11 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './authenticated/home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ReversePipe } from './pipes/reverse.pipe';
-import { ProfileComponent } from './authenticated/profile/profile.component';
 import { SharedModule } from './shared/shared.module';
 import { ModalsModule } from './modals/modals.module';
+import { AuthenticatedModule } from './authenticated/authenticated.module';
 
 @NgModule({
   declarations: [
@@ -21,10 +20,8 @@ import { ModalsModule } from './modals/modals.module';
     NotFoundComponent,
     NavbarComponent,
     LoginComponent,
-    HomeComponent,
     RegisterComponent,
     ReversePipe,
-    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +32,7 @@ import { ModalsModule } from './modals/modals.module';
     RouterModule,
     SharedModule,
     ModalsModule,
+    AuthenticatedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
