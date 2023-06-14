@@ -23,5 +23,7 @@ Route::post('/user/register', [UserController::class, 'create']);
 Route::middleware(['auth:api'])->group(function () {
     Route::get('/user/get', [UserController::class, 'user']);
     Route::get('/check-token', [UserController::class, 'check_token']);
+
+    Route::post('/profile/update-avatar', [ProfileController::class, 'update_avatar']);
     Route::get('/profile/{url}', [ProfileController::class, 'index']);
 });

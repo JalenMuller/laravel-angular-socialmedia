@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
@@ -34,7 +35,14 @@ class UserController extends Controller
             'gender' => $data['gender'],
             'profile_url' => $profile_url
         ]);
-        
+        Profile::create([
+            'user_id' => $user['id'],
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'birthday' => $data['birthday'],
+            'gender' => $data['gender'],
+            'profile_url' => $profile_url
+        ]);
         $token = $user->createToken('Token')->accessToken;
         return response()->json(['token' => $token]);
     }

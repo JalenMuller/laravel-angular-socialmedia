@@ -1,5 +1,6 @@
 import { UserService } from './../../services/user.service';
 import { Component, Input } from '@angular/core';
+import apiConfig from 'src/app/constants/apiConfig';
 import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
@@ -8,11 +9,18 @@ import { ModalService } from 'src/app/services/modal.service';
   styleUrls: ['./avatar-modal.component.css'],
 })
 export class AvatarModalComponent {
-  constructor(public modal: ModalService, private userService: UserService) {}
-  @Input() avatar: string = '/assets/images/user.svg';
+  baseUrl = apiConfig.baseUrl;
+  constructor(public modal: ModalService, public userService: UserService) {}
 
-  upload() {
-    
+  openInput() {
+    document.getElementById('avatar-input')?.click();
+  }
+  upload($event: Event) {
+    const input = $event.currentTarget as HTMLInputElement;
+    let fileList: FileList | null = input.files;
+    if (fileList) {
+      this.userService.uploadAvatar(fileList[0]);
+    }
   }
 
   ngOnInit(): void {

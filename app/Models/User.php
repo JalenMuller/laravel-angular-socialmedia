@@ -25,7 +25,6 @@ class User extends Authenticatable
         'birthday',
         'gender',
         'avatar',
-        'profile_cover',
         'profile_url',
     ];
 

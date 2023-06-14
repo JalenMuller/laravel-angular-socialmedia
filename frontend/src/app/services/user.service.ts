@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import apiConfig from '../constants/apiConfig';
 import IUser from '../models/user.model';
+import { ProfileService } from './profile.service';
 @Injectable({ providedIn: 'root' })
 export class UserService {
   user: IUser | null = null;
@@ -10,13 +11,16 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private profileService: ProfileService
   ) {
     this.fetchUser();
   }
-
+  headers: HttpHeaders = new HttpHeaders({
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
+  });
   async login(email: string, password: string) {
-    const registerRequest = this.http.post(`${apiConfig.baseUrl}/user/login`, {
+    const registerRequest = this.http.post(`${apiConfig.apiUrl}/user/login`, {
       email,
       password,
     });
@@ -33,7 +37,7 @@ export class UserService {
   }
   async register(body: IUser) {
     const registerRequest = this.http.post(
-      `${apiConfig.baseUrl}/user/register`,
+      `${apiConfig.apiUrl}/user/register`,
       body
     );
     registerRequest.subscribe({
@@ -47,27 +51,9 @@ export class UserService {
       },
     });
   }
-  async uploadAvatar(avatar: File) {
-    const registerRequest = this.http.post(
-      `${apiConfig.baseUrl}/user/update-avatar`,
-      avatar
-    );
-    registerRequest.subscribe({
-      next: (value: any) => {
-        console.log(value);
-      },
-      error: (e) => {
-        console.log(e);
-      },
-    });
-  }
   async fetchUser() {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-    });
-
-    const fetchedUser = this.http.get(`${apiConfig.baseUrl}/user/get`, {
+    const headers = this.headers;
+    const fetchedUser = this.http.get(`${apiConfig.apiUrl}/user/get`, {
       headers,
     });
     fetchedUser.subscribe({
@@ -80,7 +66,26 @@ export class UserService {
       },
     });
   }
-  // getUser(): Observable<any> {
-  //   return this.user$;
-  // }
+  async uploadAvatar(avatar: File) {
+    let headers = this.headers;
+    let formData: any = new FormData();
+    formData.append('avatar', avatar);
+
+    console.log(formData);
+    const avatarRequest = this.http.post(
+      `${apiConfig.apiUrl}/profile/update-avatar`,
+      formData,
+      { headers }
+    );
+    avatarRequest.subscribe({
+      next: (value: any) => {
+        console.log(value);
+        this.user!.avatar = value.url;
+        setTimeout(() => window.location.reload(), 1000);
+      },
+      error: (e) => {
+        console.log(e);
+      },
+    });
+  }
 }

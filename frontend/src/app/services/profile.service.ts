@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import apiConfig from '../constants/apiConfig';
 import { Subject } from 'rxjs';
-import IUser from '../models/user.model';
+import IProfile from '../models/profile.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,11 +10,11 @@ import IUser from '../models/user.model';
 export class ProfileService {
   constructor(private http: HttpClient) {}
   getProfile(url: string) {
-    var res = new Subject<{ user: IUser; currentUser: boolean }>();
+    var res = new Subject<{ profile: IProfile; currentUser: boolean }>();
     const headers = new HttpHeaders({
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     });
-    const fetchedUser = this.http.get(`${apiConfig.baseUrl}/profile/${url}`, {
+    const fetchedUser = this.http.get(`${apiConfig.apiUrl}/profile/${url}`, {
       headers,
     });
     fetchedUser.subscribe({

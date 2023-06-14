@@ -30,7 +30,7 @@ export class AuthService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     });
-    const request = this.http.get(`${apiConfig.baseUrl}/check-token`, {
+    const request = this.http.get(`${apiConfig.apiUrl}/check-token`, {
       headers,
     });
     const res = await lastValueFrom(request).catch(() => {
