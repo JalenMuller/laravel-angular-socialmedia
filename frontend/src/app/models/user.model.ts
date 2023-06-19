@@ -8,4 +8,5 @@ export default interface IUser {
   profile_url?: string;
   avatar?: string | null;
   profile_cover?: string | null;
+  created_at?: string;
 }

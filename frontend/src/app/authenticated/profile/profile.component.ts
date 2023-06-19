@@ -25,7 +25,6 @@ export class ProfileComponent implements OnInit {
       const res = this.profileService.getProfile(profileUrl);
       res.subscribe((res) => {
         this.profile = res.profile;
-        this.modalService.toggleModal('edit-profile');
         console.log(this.profile);
         this.currentUser = res.currentUser;
       });
@@ -33,6 +32,9 @@ export class ProfileComponent implements OnInit {
   }
   editProfile() {
     this.modalService.toggleModal('edit-profile');
+  }
+  newPost() {
+    this.modalService.toggleModal('new-post');
   }
   changeAvatar() {
     this.modalService.toggleModal('avatar');

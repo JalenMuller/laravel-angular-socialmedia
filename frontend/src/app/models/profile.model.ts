@@ -16,4 +16,5 @@ export default interface IProfile {
   bio?: string | null;
   email?: string | null;
   relationship_status?: string | null;
+  created_at?: string;
 }

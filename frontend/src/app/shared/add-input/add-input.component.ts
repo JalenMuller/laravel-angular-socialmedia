@@ -24,7 +24,8 @@ export class AddInputComponent implements OnInit {
     return false;
   }
   handleKeydown($event: Event) {
-    // event not available on keyup which is why we need a separate function to handle enter
+    // event not available on keyup which is
+    // why we need a separate function to handle enter
     const pressedKey = ($event as KeyboardEvent).key;
     if (pressedKey === 'Enter') {
       $event.preventDefault();
@@ -33,6 +34,11 @@ export class AddInputComponent implements OnInit {
   }
   setValue($event: Event) {
     this.value = ($event.target as HTMLInputElement).value;
+  }
+  deleteValue() {
+    this.value = '';
+    this.control.setValue('');
+    this.state = 'add';
   }
   save() {
     if (this.value === '') {
