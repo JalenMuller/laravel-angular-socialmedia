@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class NewPostModalComponent {
   baseUrl = apiConfig.baseUrl;
-  user: IUser | null = null;
+  user: any = null;
   constructor(public modal: ModalService, private userService: UserService) {
     this.user = this.userService.user;
   }

@@ -111,8 +111,8 @@
                 <img
                   class="h-full w-full rounded-full"
                   [src]="
-                    user.user?.avatar
-                      ? baseUrl + user.user?.avatar
+                    user?.avatar
+                      ? baseUrl + user?.avatar
                       : '/assets/images/user.svg'
                   "
                   alt=""
@@ -150,7 +150,7 @@
             >
               <!-- Active: "bg-gray-100", Not Active: "" -->
               <a
-                [routerLink]="'/u/' + user.user?.profile_url"
+                [routerLink]="'/u/' + user?.profile_url"
                 class="block px-4 py-2 text-sm text-gray-700"
                 role="menuitem"
                 tabindex="-1"

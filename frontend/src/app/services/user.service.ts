@@ -4,9 +4,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 import apiConfig from '../constants/apiConfig';
 import IUser from '../models/user.model';
 import { ProfileService } from './profile.service';
+import { BehaviorSubject } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  user: IUser | null = null;
+  user = new BehaviorSubject<IUser | null>(null);
 
   constructor(
     private http: HttpClient,
@@ -58,8 +59,8 @@ export class UserService {
     });
     fetchedUser.subscribe({
       next: (value: any) => {
-        // console.log(value);
-        this.user = value;
+        this.user.next(value);
+        this.user.complete();
       },
       error: (e) => {
         console.log(e);
@@ -79,8 +80,8 @@ export class UserService {
     );
     avatarRequest.subscribe({
       next: (value: any) => {
-        console.log(value);
-        this.user!.avatar = value.url;
+        console.log(this.user.getValue());
+        // this.user.getValue()?.avatar ?? '' = value.url;
         setTimeout(() => window.location.reload(), 1000);
       },
       error: (e) => {

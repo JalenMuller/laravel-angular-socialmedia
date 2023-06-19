@@ -1,9 +1,10 @@
 import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import pages from '../constants/pages';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, last } from 'rxjs';
 import { UserService } from '../services/user.service';
 import apiConfig from '../constants/apiConfig';
+import IUser from '../models/user.model';
 
 @Component({
   selector: 'app-navbar',
@@ -15,8 +16,11 @@ export class NavbarComponent implements OnInit {
   showProfileDropdown = false;
   pages = pages;
   baseUrl = apiConfig.baseUrl;
+  user: IUser | null = null;
 
-  constructor(public auth: AuthService, public user: UserService) {}
+  constructor(public auth: AuthService, public userService: UserService) {
+    userService.user.pipe(last()).subscribe((value) => (this.user = value));
+  }
   ngOnInit(): void {}
   toggleProfileDropdown() {
     this.showProfileDropdown = !this.showProfileDropdown;

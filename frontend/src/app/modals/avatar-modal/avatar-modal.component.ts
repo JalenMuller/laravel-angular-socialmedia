@@ -1,6 +1,8 @@
 import { UserService } from './../../services/user.service';
 import { Component, Input } from '@angular/core';
+import { last } from 'rxjs';
 import apiConfig from 'src/app/constants/apiConfig';
+import IUser from 'src/app/models/user.model';
 import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
@@ -10,7 +12,10 @@ import { ModalService } from 'src/app/services/modal.service';
 })
 export class AvatarModalComponent {
   baseUrl = apiConfig.baseUrl;
-  constructor(public modal: ModalService, public userService: UserService) {}
+  user: IUser | null = null;
+  constructor(public modal: ModalService, public userService: UserService) {
+    userService.user.pipe(last()).subscribe((value) => (this.user = value));
+  }
 
   openInput() {
     document.getElementById('avatar-input')?.click();

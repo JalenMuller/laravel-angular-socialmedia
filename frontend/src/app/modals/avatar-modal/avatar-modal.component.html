@@ -4,9 +4,7 @@
     <div class="w-full py-10 border-b border-gray-300">
       <img
         [src]="
-          userService.user?.avatar
-            ? baseUrl + userService.user?.avatar
-            : '/assets/images/user.svg'
+          user?.avatar ? baseUrl + user?.avatar : '/assets/images/user.svg'
         "
         class="w-52 h-52 rounded-full mx-auto"
       />
