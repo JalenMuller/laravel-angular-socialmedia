@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AvatarRequest;
+use App\Http\Requests\UpdateProfileRequest;
 use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -44,5 +45,22 @@ class ProfileController extends Controller
      } else {
          return response()->json(['message' => 'Something went wrong with your image upload.']);
      }
+   }
+   public function update_profile(UpdateProfileRequest $request){
+      $data = $request->validated();
+
+      $profile = Profile::where('user_id', $request->user()['id'])->first();
+      
+      $profile->workplace = $data['workplace'];
+      $profile->high_school = $data['high_school'];
+      $profile->college = $data['college'];
+      $profile->country = $data['country'];
+      $profile->city = $data['city'];
+      $profile->relationship_status = $data['relationship_status'];
+      $profile->email = $data['email'];
+      $profile->phone_nr = $data['phone_nr'];
+      $profile->website = $data['website'];
+
+      $profile->save();
    }
 }

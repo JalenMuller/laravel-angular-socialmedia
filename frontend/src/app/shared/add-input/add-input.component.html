@@ -1,0 +1,40 @@
+<!-- ADD -->
+<button
+  class="flex gap-2 text-blue-500 font-semibold text-lg"
+  *ngIf="state === 'add'"
+  (click)="setState('edit')"
+>
+  <i class="text-xl mr-1 bi bi-plus-circle"></i>
+  <span>Add a {{ field }}</span>
+</button>
+<!-- EDIT -->
+<div class="flex flex-col gap-2 mt-1" *ngIf="state === 'edit'">
+  <input
+    #input
+    class="w-full sm border border-gray-400 p-3 rounded-md"
+    [placeholder]="field | titlecase"
+    [formControl]="control"
+    (keydown)="handleKeydown($event)"
+    (keyup)="setValue($event)"
+  />
+  <button
+    (click)="save()"
+    class="bg-blue-500 text-white font-semibold p-2 rounded-md w-fit self-end"
+  >
+    Save
+  </button>
+</div>
+<!-- SET (DISPLAY) -->
+<div
+  class="flex items-center gap-2 text-lg text-gray-600 font-semibold"
+  *ngIf="state === 'set'"
+>
+  <i [class]="'text-xl mr-1 bi bi-' + icon"></i>
+  <span>{{ value }}</span>
+  <button
+    (click)="setState('edit')"
+    class="bg-gray-200 rounded-full w-8 h-8 ml-auto flex items-center justify-center cursor-pointer hover:bg-gray-300"
+  >
+    <i class="text-lg bi bi-pencil text-black"></i>
+  </button>
+</div>

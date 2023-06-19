@@ -1,0 +1,94 @@
+<app-modal modalID="edit-profile" heading="Edit profile">
+  <p class="text-xl font-semibold" heading>Edit profile</p>
+  <div class="flex flex-col w-full py-2">
+    <form
+      [formGroup]="profileForm"
+      (submit)="submit()"
+      class="flex flex-col gap-4"
+    >
+      <div>
+        <label for="bio" class="block mb-2 text-xl font-bold text-gray-900"
+          >Bio</label
+        >
+        <textarea
+          id="bio"
+          rows="4"
+          class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+          placeholder="Describe yourself"
+          [formControl]="bio"
+        ></textarea>
+      </div>
+      <h2 class="text-xl font-bold text-gray-900">About you</h2>
+
+      <div class="flex flex-col gap-2 px-2">
+        <h2 class="font-medium text-gray-900 text-lg mb-1">General</h2>
+        <app-add-input
+          [control]="workplace"
+          [value]="profile?.workplace ?? ''"
+          icon="briefcase-fill"
+          field="workplace"
+        />
+        <app-add-input
+          [control]="high_school"
+          [value]="profile?.high_school ?? ''"
+          icon="mortarboard-fill"
+          field="high school"
+        />
+        <app-add-input
+          [control]="college"
+          [value]="profile?.college ?? ''"
+          icon="mortarboard-fill"
+          field="college"
+        />
+        <app-add-input
+          [control]="country"
+          [value]="profile?.country ?? ''"
+          icon="globe-americas"
+          field="country"
+        />
+        <app-add-input
+          [control]="city"
+          [value]="profile?.city ?? ''"
+          icon="buildings-fill"
+          field="city"
+        />
+        <app-add-input
+          [control]="relationship_status"
+          [value]="profile?.relationship_status ?? ''"
+          icon="heart-fill"
+          field="relationship status"
+        />
+      </div>
+      <div class="flex flex-col gap-2 px-2">
+        <h2 class="font-medium text-gray-900 text-lg mb-1">Contact Info</h2>
+
+        <app-add-input
+          [control]="email"
+          [value]="profile?.email ?? ''"
+          icon="envelope-at-fill"
+          field="email"
+        />
+
+        <app-add-input
+          [control]="phone_nr"
+          [value]="profile?.phone_nr ?? ''"
+          icon="telephone-fill"
+          field="phone number"
+        />
+        <app-add-input
+          [control]="website"
+          [value]="profile?.website ?? ''"
+          icon="link-45deg"
+          field="website"
+        />
+      </div>
+      <button
+        [type]="submit"
+        class="bg-blue-500 w-full hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled:opacity-50 disabled:bg-blue-500"
+        type="button"
+      >
+        Update Profile
+      </button>
+    </form>
+  </div>
+</app-modal>

@@ -1,0 +1,161 @@
+<div class="w-full">
+  <div class="m-5 bg-white shadow-md text-gray-500 rounded-md">
+    <div class="px-2 py-3">
+      <app-vertical-tabs-container classNames="min-h-[20rem]">
+        <!-- Overview -->
+        <app-vertical-tab tabTitle="Overview">
+          <div class="flex flex-col mb-2 gap-3 px-2 py-3">
+            <div class="flex items-center gap-2" *ngIf="profile?.workplace">
+              <i class="bi bi-briefcase-fill text-2xl"></i>
+              <span
+                >Works at
+                <span class="font-semibold">{{
+                  profile?.workplace
+                }}</span></span
+              >
+            </div>
+            <!-- Birthday -->
+            <div class="flex items-center gap-2" *ngIf="profile?.birthday">
+              <i class="bi bi-balloon-fill mr-1 text-2xl"></i>
+              <div class="flex flex-col">
+                <span>{{ profile?.birthday | date }}</span>
+                <span class="text-gray-500 text-xs font-semibold"
+                  >Birthday</span
+                >
+              </div>
+            </div>
+            <!-- Relationship Status -->
+            <div
+              class="flex items-center gap-2"
+              *ngIf="profile?.relationship_status"
+            >
+              <i class="bi bi-heart-fill mr-1 text-2xl"></i>
+              <div class="flex flex-col">
+                <span>{{ profile?.relationship_status }}</span>
+              </div>
+            </div>
+            <!-- City -->
+            <div class="flex items-center gap-2" *ngIf="profile?.city">
+              <i class="bi bi-house-fill mr-1 text-2xl"></i>
+              <div class="flex flex-col">
+                <span
+                  >Lives in
+                  <span class="font-semibold">{{ profile?.city }}</span>
+                </span>
+              </div>
+            </div>
+            <!-- Country -->
+            <div class="flex items-center gap-2" *ngIf="profile?.city">
+              <i class="bi bi-globe-americas mr-1 text-2xl"></i>
+              <div class="flex flex-col">
+                <span
+                  >From
+                  <span class="font-semibold">{{ profile?.country }}</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </app-vertical-tab>
+        <!-- Work and education -->
+        <app-vertical-tab tabTitle="Work and education">
+          <div class="flex flex-col px-2 gap-3">
+            <!-- Workplace -->
+            <div class="flex flex-col mb-2 gap-1">
+              <span class="text-gray-600 font-bold text-lg">Work</span>
+              <div class="flex items-center gap-2" *ngIf="profile?.workplace">
+                <i class="bi bi-briefcase-fill text-2xl"></i>
+                <span
+                  >Works at
+                  <span class="font-semibold">{{
+                    profile?.workplace
+                  }}</span></span
+                >
+              </div>
+            </div>
+            <!-- High school -->
+            <div class="flex flex-col mb-2 gap-1">
+              <span class="text-gray-600 font-bold text-lg">High School</span>
+              <div class="flex items-center gap-2" *ngIf="profile?.high_school">
+                <i class="bi bi-mortarboard-fill text-2xl"></i>
+                <span
+                  >Went to
+                  <span class="font-semibold text-gray-600">{{
+                    profile?.high_school
+                  }}</span></span
+                >
+              </div>
+            </div>
+            <!-- College -->
+            <div class="flex flex-col mb-2 gap-1">
+              <span class="text-gray-600 font-bold text-lg">College</span>
+              <div class="flex items-center gap-2" *ngIf="profile?.college">
+                <i class="bi bi-mortarboard-fill text-2xl"></i>
+                <span
+                  >Studied at
+                  <span class="font-semibold text-gray-600">{{
+                    profile?.college
+                  }}</span></span
+                >
+              </div>
+            </div>
+          </div>
+        </app-vertical-tab>
+        <!-- Contact and basic info -->
+        <app-vertical-tab tabTitle="Contact and basic info">
+          <!-- Contact Info -->
+          <div class="flex flex-col mb-2 gap-3 px-2">
+            <h2 class="text-gray-600 font-bold text-xl">Contact info</h2>
+            <!-- Phone Number -->
+            <div class="flex items-center gap-2" *ngIf="profile?.phone_nr">
+              <i class="bi bi-telephone-fill mr-1 text-2xl"></i>
+              <div class="flex flex-col">
+                <span>{{ profile?.phone_nr }}</span>
+                <span class="text-gray-500 text-xs font-semibold"
+                  >Phone number</span
+                >
+              </div>
+            </div>
+            <!-- Email -->
+            <div class="flex items-center gap-2" *ngIf="profile?.email">
+              <i class="bi bi-envelope-at-fill mr-1 text-2xl"></i>
+              <div class="flex flex-col">
+                <span>{{ profile?.email }}</span>
+                <span class="text-gray-500 text-xs font-semibold">Email</span>
+              </div>
+            </div>
+            <!-- Website -->
+            <div class="flex items-center gap-2" *ngIf="profile?.website">
+              <i class="bi bi-link-45deg mr-1 text-2xl"></i>
+              <div class="flex flex-col">
+                <span>{{ profile?.website }}</span>
+                <span class="text-gray-500 text-xs font-semibold">Website</span>
+              </div>
+            </div>
+          </div>
+          <!-- Basic Info -->
+          <div class="flex flex-col mb-2 gap-3 px-2">
+            <h2 class="text-gray-600 font-bold text-xl">Basic Info</h2>
+            <!-- Gender -->
+            <div class="flex items-center gap-2" *ngIf="profile?.gender">
+              <i class="bi bi-person-fill mr-1 text-2xl"></i>
+              <div class="flex flex-col">
+                <span>{{ profile?.gender! | gender | titlecase }}</span>
+                <span class="text-gray-500 text-xs font-semibold">Gender</span>
+              </div>
+            </div>
+            <!-- Birthday -->
+            <div class="flex items-center gap-2" *ngIf="profile?.birthday">
+              <i class="bi bi-balloon-fill mr-1 text-2xl"></i>
+              <div class="flex flex-col">
+                <span>{{ profile?.birthday | date }}</span>
+                <span class="text-gray-500 text-xs font-semibold"
+                  >Birthday</span
+                >
+              </div>
+            </div>
+          </div>
+        </app-vertical-tab>
+      </app-vertical-tabs-container>
+    </div>
+  </div>
+</div>

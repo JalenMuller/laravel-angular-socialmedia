@@ -1,4 +1,6 @@
-<div [class]="'text-sm font-semibold text-center text-gray-500 ' + classNames">
+<div
+  [class]="'font-semibold text-center shadow-md text-gray-500 ' + classNames"
+>
   <ul class="flex flex-wrap -mb-px">
     <li *ngFor="let tab of tabs" class="mr-2">
       <a
@@ -6,7 +8,7 @@
         href="#"
         (click)="selectTab(tab)"
         [ngClass]="{
-          'active border-blue-600 text-blue-600': tab.active
+          'active !border-blue-600 text-blue-600': tab.active
         }"
         >{{ tab.tabTitle }}</a
       >

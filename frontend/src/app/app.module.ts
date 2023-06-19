@@ -9,7 +9,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { ReversePipe } from './pipes/reverse.pipe';
 import { SharedModule } from './shared/shared.module';
 import { ModalsModule } from './modals/modals.module';
 import { AuthenticatedModule } from './authenticated/authenticated.module';
@@ -21,7 +20,6 @@ import { AuthenticatedModule } from './authenticated/authenticated.module';
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
-    ReversePipe,
   ],
   imports: [
     BrowserModule,
