@@ -4,10 +4,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 import apiConfig from '../constants/apiConfig';
 import IUser from '../models/user.model';
 import { ProfileService } from './profile.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  user = new BehaviorSubject<IUser | null>(null);
+  user = new Subject<IUser>();
 
   constructor(
     private http: HttpClient,
@@ -60,7 +60,6 @@ export class UserService {
     fetchedUser.subscribe({
       next: (value: any) => {
         this.user.next(value);
-        this.user.complete();
       },
       error: (e) => {
         console.log(e);
@@ -80,8 +79,6 @@ export class UserService {
     );
     avatarRequest.subscribe({
       next: (value: any) => {
-        console.log(this.user.getValue());
-        // this.user.getValue()?.avatar ?? '' = value.url;
         setTimeout(() => window.location.reload(), 1000);
       },
       error: (e) => {

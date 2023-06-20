@@ -1,7 +1,7 @@
 import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import pages from '../constants/pages';
-import { Observable, Subscription, last } from 'rxjs';
+import { Observable, Subscription, first, last } from 'rxjs';
 import { UserService } from '../services/user.service';
 import apiConfig from '../constants/apiConfig';
 import IUser from '../models/user.model';
@@ -19,7 +19,9 @@ export class NavbarComponent implements OnInit {
   user: IUser | null = null;
 
   constructor(public auth: AuthService, public userService: UserService) {
-    userService.user.pipe(last()).subscribe((value) => (this.user = value));
+    userService.user.pipe(first()).subscribe((value) => {
+      this.user = value;
+    });
   }
   ngOnInit(): void {}
   toggleProfileDropdown() {

@@ -25,7 +25,6 @@ export class ProfileComponent implements OnInit {
       const res = this.profileService.getProfile(profileUrl);
       res.subscribe((res) => {
         this.profile = res.profile;
-        // console.log(this.profile);
         this.currentUser = res.currentUser;
       });
     }

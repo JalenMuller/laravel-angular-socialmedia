@@ -51,6 +51,7 @@ export class EditProfileModalComponent {
     res.subscribe((res) => {
       console.log(res);
       this.update.emit();
+      this.modal.toggleModal('edit-profile');
     });
   }
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,8 @@ use App\Http\Controllers\UserController;
 Route::get('/', [UserController::class, 'index']);
 Route::post('/user/login', [UserController::class, 'login']);
 Route::post('/user/register', [UserController::class, 'create']);
+
+Route::post('/post/create', [PostController::class, 'create']);
 
 Route::middleware(['auth:api'])->group(function () {
     Route::get('/user/get', [UserController::class, 'user']);

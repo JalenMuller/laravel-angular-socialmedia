@@ -1,4 +1,58 @@
 <app-modal modalID="new-post" heading="Update Profile Picture">
   <p class="text-xl font-semibold" heading>New post</p>
-  {{ user?.first_name }}
+  <form class="py-2" #form="ngForm" (ngSubmit)="submit(form)" novalidate>
+    <div class="flex px-1 gap-2 items-center">
+      <img
+        [src]="
+          user?.avatar ? baseUrl + user?.avatar : '/assets/images/user.svg'
+        "
+        class="w-12 h-12 rounded-full"
+      />
+      <span class="font-semibold text-lg">{{
+        user?.first_name + " " + user?.last_name
+      }}</span>
+    </div>
+    <textarea
+      [placeholder]="'What\'s new ' + user?.first_name + '?'"
+      class="w-full mt-5 text-xl resize-none placeholder:text-gray-600 outline-none"
+      rows="3"
+      name="postDesc"
+      ngModel
+    ></textarea>
+    <img
+      *ngIf="imagePreview"
+      [src]="imagePreview"
+      class="w-full max-h-[30vh] object-contain mx-auto mb-5 mt-2"
+    />
+    <div
+      class="flex items-center justify-between py-3 px-5 border rounded-md mb-3"
+    >
+      <span class="font-semibold">Add to your post</span>
+      <div class="flex gap-4">
+        <button class="text-blue-500 text-2xl" (click)="openInput()">
+          <i class="bi bi-image"></i>
+        </button>
+        <button class="text-yellow-500 text-2xl">
+          <i class="bi bi-emoji-smile"></i>
+        </button>
+        <button class="text-red-500 text-2xl">
+          <i class="bi bi-geo-alt-fill"></i>
+        </button>
+      </div>
+    </div>
+    <button
+      [type]="submit"
+      class="bg-blue-500 w-full hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled:opacity-50 disabled:bg-blue-500"
+      type="button"
+    >
+      Post
+    </button>
+    <input
+      id="image-input"
+      type="file"
+      accept="image/png, image/jpg, image/jpeg"
+      class="hidden"
+      (change)="preview($event)"
+    />
+  </form>
 </app-modal>

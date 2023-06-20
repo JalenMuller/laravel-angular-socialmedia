@@ -12,6 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { SharedModule } from './shared/shared.module';
 import { ModalsModule } from './modals/modals.module';
 import { AuthenticatedModule } from './authenticated/authenticated.module';
+// import { AutoFocusDirective } from './directives/auto-focus.directive';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { AuthenticatedModule } from './authenticated/authenticated.module';
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
+    // AutoFocusDirective,
   ],
   imports: [
     BrowserModule,
